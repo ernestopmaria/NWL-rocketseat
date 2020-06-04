@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts",
     "knex:seed": "knex --knexfile knexfile.ts seed:run",
-    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
+    "knex:migrate": "migrate:latestknex --knexfile knexfile.ts "
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/ernestopmaria/NWL-rocketseat#readme",
   "dependencies": {
+    "@types/cors": "^2.8.6",
     "@types/express": "^4.17.6",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "sqlite3": "^4.2.0"
