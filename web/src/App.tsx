@@ -1,15 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
+
+//JSX sintase de xml dentro do JS
+
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-       <h1> Hello world</h1>
-      </header>
-    </div>
+  
+    <h1>Hello world</h1>
+  
+   
   );
 }
 
