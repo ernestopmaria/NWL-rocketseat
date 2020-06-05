@@ -1,7 +1,7 @@
 import React , {useEffect , useState , ChangeEvent ,FormEvent}from 'react';
 import './style.css';
 import {FiArrowLeft} from 'react-icons/fi';
-import{Link} from 'react-router-dom';
+import{Link , useHistory} from 'react-router-dom';
 import{Map, TileLayer, Marker} from 'react-leaflet';
 import logo from '../../assets/logo.svg';
 import api from '../../services/api';
@@ -38,6 +38,8 @@ const CreatPoint = () =>{
     const [selectedCity, setSelectedCity] =useState('0');
     const [selectedItems, setSelectedItems] =useState<number[]>([]);
     const [selectedPosition, setSelectedPosition] =useState <[number, number]>([0, 0]);
+
+    const history = useHistory();
 
     useEffect(() =>{
         navigator.geolocation.getCurrentPosition(position =>{
@@ -106,7 +108,7 @@ const CreatPoint = () =>{
              }
          }
 
-         function handleSubmit(event: FormEvent){
+        async function handleSubmit(event: FormEvent){
              event.preventDefault();
 
              const {name, email, whatsapp} = formData;
@@ -126,7 +128,9 @@ const CreatPoint = () =>{
                 items,
 
              };
-             console.log(data);
+             await api.post('points', data);
+             alert('Ponto de Coleta criado');
+             history.push('/')
          }
 
     return (
