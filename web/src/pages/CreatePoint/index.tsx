@@ -1,4 +1,4 @@
-import React , {useEffect , useState , ChangeEvent}from 'react';
+import React , {useEffect , useState , ChangeEvent ,FormEvent}from 'react';
 import './style.css';
 import {FiArrowLeft} from 'react-icons/fi';
 import{Link} from 'react-router-dom';
@@ -106,6 +106,29 @@ const CreatPoint = () =>{
              }
          }
 
+         function handleSubmit(event: FormEvent){
+             event.preventDefault();
+
+             const {name, email, whatsapp} = formData;
+             const uf = selectedUf;
+             const city = selectedCity;
+             const [latitude, longitude] = selectedPosition;
+             const items = selectedItems;
+             const data = {
+            
+                name,
+                email,
+                whatsapp,
+                uf,
+                city,
+                latitude,
+                longitude,
+                items,
+
+             };
+             console.log(data);
+         }
+
     return (
         <div id="page-create-point">
             <header>
@@ -115,7 +138,7 @@ const CreatPoint = () =>{
                     Voltar para home
                 </Link>
             </header>
-            <form>
+            <form onSubmit ={handleSubmit}>
                 <h1>Cadastro do <br/>ponto de coleta</h1>
 
                 <fieldset>
