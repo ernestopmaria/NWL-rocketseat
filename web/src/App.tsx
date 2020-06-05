@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
+
+import Routes from "./routes";
 
 
 //JSX sintase de xml dentro do JS
@@ -8,7 +10,7 @@ function App() {
   
   return (
   
-    <h1>Hello world</h1>
+   <Routes/>
   
    
   );
