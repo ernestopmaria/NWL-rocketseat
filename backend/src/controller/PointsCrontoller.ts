@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import  { Request, Response } from 'express';
 import knex from '../database/connection';
 
 
@@ -18,11 +18,11 @@ class PointsController {
        .where('city' , String(city))
        .where('uf' , String(uf))
        .distinct()
-       .select('points.*');
-        return response.json(points);
+       .select('points.*')
+        return response.json(points); 
     }
     async show (request:Request, response:Response){
-        const {id} = request.params;
+        const {id} = request.params
         const point = await knex ('points').where('id' , id).first();
         if(!point){
             return response.status(400).json({message: 'Ponto não encontrado'});
@@ -30,7 +30,7 @@ class PointsController {
     
         const items = await knex('items')
         .join('point_items' , 'items.id' ,'=' ,'point_items.item_id')
-        .where('point_items.point_id', id);
+        .where('point_items.point_id', id).select('items.title')
         return response.json({point, items});
     }
     async create(request:Request, response:Response){
@@ -64,8 +64,9 @@ class PointsController {
     
         const pointItems = items.map((item_id: number) =>{
             return{
-                point_id,
-                item_id
+              
+                item_id,
+                point_id
                 
             };
            
